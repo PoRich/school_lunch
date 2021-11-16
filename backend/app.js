@@ -1,8 +1,11 @@
+require('dotenv').config()
 var express = require('express')
 var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
 var cors = require('cors')
+const authenticateJwt = require('./authenticate-jwt')
+const passKnex = require('./database/dynamic-knex')
 
 var indexRouter = require('./routes/index')
 var usersRouter = require('./routes/users')
@@ -20,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 var router = express.Router()
 app.use('/api', router)
 
-router.use('/lunch-week', lunchWeekRouter)
+router.use('/lunch-week', [authenticateJwt, passKnex], lunchWeekRouter) // all routes in /lunch-week are protected by JWT
 router.use('/', indexRouter)
 router.use('/users', usersRouter)
 
