@@ -33,7 +33,7 @@ const getKnex = (schoolDatabase) => {
   return db
 }
 
-const passKnex = (req, res, next) => {
+const passKnexSecured = (req, res, next) => {
   // The JWT information will be populated in req.user
   // get the school_database property from req.user
   const schoolDatabase = req.user['https://school-lunch/school_database']
@@ -41,4 +41,11 @@ const passKnex = (req, res, next) => {
   next()
 }
 
-module.exports = passKnex
+const passKnexPublic = (req, res, next) => {
+  const schoolName = req.params.schoolName
+  const schoolDatbase = schoolName.replace(/-/g, '_')
+  req.knex = getKnex(schoolDatbase)
+  next()
+}
+
+module.exports = { passKnexSecured, passKnexPublic }

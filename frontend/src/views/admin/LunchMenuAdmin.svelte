@@ -179,7 +179,7 @@
     </header>
     <section class="modal-card-body">
       <field>
-        <label class="label">Week Of</label>
+        <label for="week of" class="label">Week Of</label>
         <!-- bind users input for the Week Of Date to the createWeekOfDate state var -->
         <input
           bind:value={createWeekOfDate}

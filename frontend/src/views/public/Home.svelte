@@ -58,7 +58,7 @@
       window.history.replaceState(null, null, '/admin/manage-menus')
       window.location.reload()
     } catch (e) {
-      registrationLOading = false
+      registrationLoading = false
       registrationErrorMessage = e.response.data.message
     }
   }
@@ -118,7 +118,7 @@
           <h3>Register Now</h3>
           {#if step === 1}
             <div class="field">
-              <label class="label">Email Address</label>
+              <label for="email" class="label">Email Address</label>
               <div class="control">
                 <input
                   bind:value={registrationForm.email}
@@ -132,7 +132,7 @@
               {/if}
             </div>
             <div class="field">
-              <label class="label">School Name</label>
+              <label for="school name" class="label">School Name</label>
               <div class="control">
                 <input
                   bind:value={registrationForm.schoolName}
@@ -155,7 +155,7 @@
           {:else if step === 2}
             <div id="passwordBlock" in:fly={{ x: 400, duration: 1000 }}>
               <div class="field">
-                <label class="label">Password</label>
+                <label for="password" class="label">Password</label>
                 <div class="control">
                   <input
                     bind:value={registrationForm.password}
@@ -166,7 +166,9 @@
                 </div>
               </div>
               <div class="field">
-                <label class="label">Confirm Password</label>
+                <label for="confirm password" class="label"
+                  >Confirm Password</label
+                >
                 <div class="control">
                   <input
                     bind:value={registrationForm.passwordConfirm}

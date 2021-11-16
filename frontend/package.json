@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "npx eslint ./src && rollup -c",
+    "build": "npx eslint ./src && rollup -c && rm -rf ../backend/public && cp -a ./public/. ../backend/public",
     "dev": "npx eslint ./src && rollup -c -w",
     "start": "sirv public -s"
   },

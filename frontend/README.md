@@ -1,3 +1,13 @@
+## Production
+
+- run from frontend
+
+```sh
+npm run build
+```
+
+---
+
 ## Linter Setup
 
 1. Note babel-eslint is depreciated use @babel/eslint-parser (depends on @babel/core)

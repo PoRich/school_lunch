@@ -7,7 +7,7 @@ import Callback from './views/admin/Callback.svelte'
 
 const routes = [
   { name: '/', component: Home },
-  { name: '/lunch-menu', component: LunchMenuView },
+  { name: '/lunch-menu/:school/:weekOf', component: LunchMenuView },
   { name: '/callback', component: Callback },
   {
     name: '/admin/manage-menus', // same as /admin/manage-menus/index

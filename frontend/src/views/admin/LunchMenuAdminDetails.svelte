@@ -82,6 +82,11 @@
     return
   }
 
+  const getPublicLink = () => {
+    const schoolPath = $user.schoolName.toLowerCase().replace(/ /g, '-')
+    return `${window.location.origin}/lunch-menu/${schoolPath}/${lunchWeek.weekOf}`
+  }
+
   onMount(async () => {
     try {
       const response = await axios.get(
@@ -116,7 +121,6 @@
       <Icon spin data={refresh} scale="3" />
     </div>
   {:else}
-    <section>{JSON.stringify(lunchWeek)}</section>
     <section>
       <div class="buttons">
         <button
@@ -133,6 +137,22 @@
         >
           {lunchWeek.isPublished ? 'Unpublish' : 'Publish'}
         </button>
+        <div class="dropdown is-hoverable">
+          <div class="dropdown-trigger">
+            <button class="buton is-link is-small">Link</button>
+          </div>
+          <div class="dropdown-menu" id="link-dropdown-menu">
+            <div class="dropdown-content">
+              <div class="dropdown-item">
+                <p>Public Lunch Menu Link</p>
+                <p class="mt-2">
+                  <a href={getPublicLink()} target="_blank">{getPublicLink()}</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <section class="mt-2">
@@ -140,7 +160,7 @@
         {#each lunchWeek.lunchDays as lunchDay}
           <div class="column">
             <div class="field">
-              <label class="label"
+              <label for="lunchday" class="label"
                 >{format(parseISO(lunchDay.day), 'EEE MM/dd/yyyy')}</label
               >
               <div class="control">
