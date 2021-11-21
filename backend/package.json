@@ -5,7 +5,8 @@
   "scripts": {
     "nodemon": "node migrate && DEBUG=backend:* npx eslint ./ && nodemon ./bin/www",
     "start": "npx eslint ./ && node ./bin/www",
-    "lint": "npx eslint ./"
+    "lint": "npx eslint ./",
+    "build-deploy": "npm run --prefix ../frontend build && gcloud app deploy"
   },
   "dependencies": {
     "axios": "^0.24.0",
